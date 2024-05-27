@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: bucket-app-cronjob
+spec:
+  schedule: "0 0 * * *" # Runs once every day at midnight
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello-world
+            image: gcr.io/mehran-co/bucket-app:v1
+            imagePullPolicy: Always
+          restartPolicy: OnFailure
